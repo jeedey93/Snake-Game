@@ -15,10 +15,18 @@ namespace WindowsFormsApplication1
 
         public int score = 0;
         public bool gameOver = false;
+        List<SnakePart> snake = new List<SnakePart>();
+        SnakePart food;
+        Timer gameLoop= new Timer();
+        Timer snakeLoop = new Timer();
 
         public Snake()
         {
             InitializeComponent();
+            gameLoop.Interval = 1000 / 60;
+            snakeLoop.Interval = 1000 / 10;
+            gameLoop.Start();
+            snakeLoop.Start();
         }
 
         private void Snake_KeyDown(object sender, KeyEventArgs e)
@@ -33,7 +41,32 @@ namespace WindowsFormsApplication1
 
         private void pbCanvas_Paint(object sender, PaintEventArgs e)
         {
-            Graphics canvas = e.Graphics;
+            Draw(e.Graphics);
+        }
+
+        private void StartGame() 
+        { 
+
+        }
+
+        private void GameOver() 
+        { 
+
+        }
+
+        private void Update() 
+        { 
+
+        }
+
+        private void Draw(Graphics graphics) 
+        { 
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+
         }
 
     }
