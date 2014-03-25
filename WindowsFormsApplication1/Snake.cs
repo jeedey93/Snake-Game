@@ -12,14 +12,28 @@ namespace WindowsFormsApplication1
 {
     public partial class Snake : Form
     {
+
+        public int score = 0;
+        public bool gameOver = false;
+
         public Snake()
         {
             InitializeComponent();
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void Snake_KeyDown(object sender, KeyEventArgs e)
         {
+            Input.ChangeState(e.KeyCode, true);
+        }
 
+        private void Snake_KeyUp(object sender, KeyEventArgs e)
+        {
+            Input.ChangeState(e.KeyCode, false);
+        }
+
+        private void pbCanvas_Paint(object sender, PaintEventArgs e)
+        {
+            Graphics canvas = e.Graphics;
         }
 
     }

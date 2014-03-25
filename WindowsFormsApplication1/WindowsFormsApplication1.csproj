@@ -50,6 +50,7 @@
     <Compile Include="About.Designer.cs">
       <DependentUpon>About.cs</DependentUpon>
     </Compile>
+    <Compile Include="Input.cs" />
     <Compile Include="Snake.cs">
       <SubType>Form</SubType>
     </Compile>
