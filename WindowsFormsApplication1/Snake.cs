@@ -13,23 +13,24 @@ namespace WindowsFormsApplication1
     public partial class Snake : Form
     {
 
-        public int score = 0;
+        public int score;
         public bool gameOver = false;
         List<SnakePart> snake = new List<SnakePart>();
         SnakePart food;
-        int direction = 0;
+        int direction = 0; // Down = 0, Left = 1, Right = 2, Up = 3
         Timer gameLoop= new Timer();
         Timer snakeLoop = new Timer();
 
         public Snake()
         {
             InitializeComponent();
+            gameLoop.Interval = 1000 / 60;
+            snakeLoop.Interval = 1000 / 5;
             gameLoop.Tick += new EventHandler(Update);
             gameLoop.Tick += new EventHandler(UpdateSnake);
-            gameLoop.Interval = 1000 / 60;
-            snakeLoop.Interval = 1000 / 10;
             gameLoop.Start();
             snakeLoop.Start();
+            StartGame();
         }
 
         private void Snake_KeyDown(object sender, KeyEventArgs e)
@@ -44,7 +45,7 @@ namespace WindowsFormsApplication1
 
         private void pbCanvas_Paint(object sender, PaintEventArgs e)
         {
-            Draw(e.Graphics);
+           Draw(e.Graphics);
         }
 
         private void StartGame() 
@@ -65,7 +66,9 @@ namespace WindowsFormsApplication1
         private void Update(object sender, EventArgs e) 
         {
             if (gameOver)
-            { }
+            { 
+
+            }
             else 
             {
                 if (Input.Press(Keys.Left))
@@ -89,14 +92,59 @@ namespace WindowsFormsApplication1
                         direction = 0;
                 }
             }
-                 
+            pbCanvas.Invalidate();
         }
 
         private void UpdateSnake(object sender, EventArgs e) 
         {
             if (!gameOver)
             {
+                for (int i = snake.Count-1; i >= 0; i--)
+                {
+                    if (i == 0)
+                    {
+                    switch (direction)
+                    {
+                        case 0: // Down
+                            snake[i].Y++;
+                            break;
+                        case 1: // Left
+                            snake[i].X--;
+                            break;
+                        case 2: // Right
+                            snake[i].X++;
+                            break;
+                        case 3: // Up
+                            snake[i].Y--;
+                            break;
+                    }
+                        SnakePart head = snake[0];
 
+                        // Out of Bound
+                        if (head.X >= 20 || head.X < 0 || head.Y >= 15 || head.Y < 0)
+                            GameOver();
+
+                        // Collision with itself
+                        for (int j = 1; j < snake.Count; j++)
+                        {
+                            if (head.X == snake[j].X && head.Y == snake[j].Y)
+                                GameOver();
+                        }
+
+                        // Collision with food
+                        if (head.X == food.X && head.Y == food.Y)
+                        {
+                            SnakePart part = new SnakePart(snake[snake.Count - 1].X, snake[snake.Count - 1].Y);
+                            snake.Add(part);
+                            GenerateFood();
+                        }
+                    }
+                    else 
+                    {
+                        snake[i].X=snake[i-1].X;
+                        snake[i].Y=snake[i-1].Y;
+                    }
+                }
             }
         }
 
@@ -106,36 +154,29 @@ namespace WindowsFormsApplication1
             food = new SnakePart(random.Next(0, 20), random.Next(0, 15));
         }
 
-        private void Draw(Graphics canvas) 
+        private void Draw(Graphics graphics) 
         {
             Font font = this.Font;
             if (gameOver) 
             {
-                SizeF message = canvas.MeasureString("GameOver", font);
-                canvas.DrawString("GameOver", font, Brushes.White, new PointF(160 - message.Width / 2, 120));
-                message = canvas.MeasureString("Final Score" + score.ToString(), font);
-                canvas.DrawString("Final Score " + score.ToString(), font, Brushes.White, new PointF(160 - message.Width / 2, 140));
-                message = canvas.MeasureString("Press Enter to start a new Game", font);
-                canvas.DrawString("Press enter to start a new game", font, Brushes.White, new PointF(160 - message.Width / 2, 160));
+                SizeF message = graphics.MeasureString("GameOver", font);
+                graphics.DrawString("GameOver", font, Brushes.White, new PointF(160 - message.Width / 2, 120));
+                message = graphics.MeasureString("Final Score" + score.ToString(), font);
+                graphics.DrawString("Final Score " + score.ToString(), font, Brushes.White, new PointF(160 - message.Width / 2, 140));
+                message = graphics.MeasureString("Press Enter to start a new Game", font);
+                graphics.DrawString("Press enter to start a new game", font, Brushes.White, new PointF(160 - message.Width / 2, 160));
             }
             else 
             {
-                canvas.DrawString("Score " + score.ToString(), font, Brushes.Black, new Point(4, 4));
+                graphics.DrawString("Score " + score.ToString(), font, Brushes.White, new Point(4, 4));
+                graphics.FillRectangle(new SolidBrush(Color.Orange), new Rectangle(food.X = 55, food.Y = 55, 16, 16));
                 for(int i=0; i<snake.Count; i++)
                 {
                     Color snake_color = i == 0 ? Color.Red : Color.Black;
                     SnakePart currentpart= snake[i];
-                    canvas.FillRectangle(new SolidBrush(snake_color), new Rectangle(currentpart.X=16, currentpart.Y=16,16,16));
+                    graphics.FillRectangle(new SolidBrush(snake_color), new Rectangle(currentpart.X = 16, currentpart.Y = 16, 16, 16));
                 }
             }
-        }
-
-        private void pictureBox1_Click(object sender, EventArgs e)
-        {
-
-
-
-
         }
     }
 }
