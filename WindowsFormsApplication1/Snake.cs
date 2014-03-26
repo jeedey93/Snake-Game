@@ -71,24 +71,24 @@ namespace WindowsFormsApplication1
             }
             else 
             {
-                if (Input.Press(Keys.Left))
+                if (Input.Press(Keys.Left) && direction != 2)
                 {
-                    if (snake.Count < 2 || snake[0].X == snake[1].X)
+                    if (snake.Count < 20 || snake[0].X == snake[1].X)
                         direction = 1;
                 }
-                else if (Input.Press(Keys.Right))
+                else if (Input.Press(Keys.Right) && direction != 1)
                 {
-                    if (snake.Count < 2 || snake[0].X == snake[1].X)
+                    if (snake.Count < 20 || snake[0].X == snake[1].X)
                         direction = 2;
                 }
-                else if (Input.Press(Keys.Up))
+                else if (Input.Press(Keys.Up) && direction != 0)
                 {
-                    if (snake.Count < 2 || snake[0].Y == snake[1].Y)
+                    if (snake.Count < 20 || snake[0].Y == snake[1].Y)
                         direction = 3;
                 }
-                else if (Input.Press(Keys.Down))
+                else if (Input.Press(Keys.Down) && direction != 3)
                 {
-                    if (snake.Count < 2 || snake[0].X == snake[1].X)
+                    if (snake.Count < 20 || snake[0].X == snake[1].X)
                         direction = 0;
                 }
             }
@@ -136,6 +136,7 @@ namespace WindowsFormsApplication1
                         {
                             SnakePart part = new SnakePart(snake[snake.Count - 1].X, snake[snake.Count - 1].Y);
                             snake.Add(part);
+                            score++;
                             GenerateFood();
                         }
                     }
