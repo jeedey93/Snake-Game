@@ -24,8 +24,8 @@ namespace WindowsFormsApplication1
         public Snake()
         {
             InitializeComponent();
-            gameLoop.Interval = 1000 / 60;
-            snakeLoop.Interval = 1000 / 5;
+            gameLoop.Interval = 100 ;
+            snakeLoop.Interval = 100 ;
             gameLoop.Tick += new EventHandler(Update);
             gameLoop.Tick += new EventHandler(UpdateSnake);
             gameLoop.Start();
@@ -59,8 +59,8 @@ namespace WindowsFormsApplication1
         }
 
         private void GameOver() 
-        { 
-
+        {
+            gameOver = true;
         }
 
         private void Update(object sender, EventArgs e) 
@@ -154,27 +154,27 @@ namespace WindowsFormsApplication1
             food = new SnakePart(random.Next(0, 20), random.Next(0, 15));
         }
 
-        private void Draw(Graphics graphics) 
+        private void Draw(Graphics canvas) 
         {
             Font font = this.Font;
             if (gameOver) 
             {
-                SizeF message = graphics.MeasureString("GameOver", font);
-                graphics.DrawString("GameOver", font, Brushes.White, new PointF(160 - message.Width / 2, 120));
-                message = graphics.MeasureString("Final Score" + score.ToString(), font);
-                graphics.DrawString("Final Score " + score.ToString(), font, Brushes.White, new PointF(160 - message.Width / 2, 140));
-                message = graphics.MeasureString("Press Enter to start a new Game", font);
-                graphics.DrawString("Press enter to start a new game", font, Brushes.White, new PointF(160 - message.Width / 2, 160));
+                SizeF message = canvas.MeasureString("GameOver", font);
+                canvas.DrawString("GameOver", font, Brushes.White, new PointF(160 - message.Width / 2, 120));
+                message = canvas.MeasureString("Final Score" + score.ToString(), font);
+                canvas.DrawString("Final Score " + score.ToString(), font, Brushes.White, new PointF(160 - message.Width / 2, 140));
+                message = canvas.MeasureString("Press Enter to start a new Game", font);
+                canvas.DrawString("Press enter to start a new game", font, Brushes.White, new PointF(160 - message.Width / 2, 160));
             }
             else 
             {
-                graphics.DrawString("Score " + score.ToString(), font, Brushes.White, new Point(4, 4));
-                graphics.FillRectangle(new SolidBrush(Color.Orange), new Rectangle(food.X = 55, food.Y = 55, 16, 16));
+                canvas.DrawString("Score " + score.ToString(), font, Brushes.White, new Point(4, 4));
+                canvas.FillRectangle(new SolidBrush(Color.Orange), new Rectangle(food.X * 16, food.Y * 16, 16, 16));
                 for(int i=0; i<snake.Count; i++)
                 {
                     Color snake_color = i == 0 ? Color.Red : Color.Black;
                     SnakePart currentpart= snake[i];
-                    graphics.FillRectangle(new SolidBrush(snake_color), new Rectangle(currentpart.X = 16, currentpart.Y = 16, 16, 16));
+                    canvas.FillRectangle(new SolidBrush(snake_color), new Rectangle(currentpart.X * 16, currentpart.Y * 16, 16, 16));
                 }
             }
         }

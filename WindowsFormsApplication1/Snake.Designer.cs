@@ -43,10 +43,10 @@
             // pbCanvas
             // 
             this.pbCanvas.BackColor = System.Drawing.SystemColors.Highlight;
-            this.pbCanvas.Location = new System.Drawing.Point(23, 28);
+            this.pbCanvas.Location = new System.Drawing.Point(13, 28);
             this.pbCanvas.Margin = new System.Windows.Forms.Padding(4);
             this.pbCanvas.Name = "pbCanvas";
-            this.pbCanvas.Size = new System.Drawing.Size(410, 297);
+            this.pbCanvas.Size = new System.Drawing.Size(320, 240);
             this.pbCanvas.TabIndex = 0;
             this.pbCanvas.TabStop = false;
             this.pbCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCanvas_Paint);
@@ -57,7 +57,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(464, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(346, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -97,12 +97,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(464, 338);
+            this.ClientSize = new System.Drawing.Size(346, 289);
             this.Controls.Add(this.pbCanvas);
             this.Controls.Add(this.menuStrip1);
+            this.DoubleBuffered = true;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.MainMenuStrip = this.menuStrip1;
+            this.MaximizeBox = false;
             this.Name = "Snake";
             this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "JeE-DeY\'s Game";
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Snake_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Snake_KeyUp);
