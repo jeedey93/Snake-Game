@@ -199,17 +199,18 @@ namespace WindowsFormsApplication1
             }
             else
             {
-                Bitmap shroom = new Bitmap("C:\\Users\\Justin Do\\Documents\\GitHub\\Snake-Game\\WindowsFormsApplication1\\Resources\\test.png");
-                Bitmap pacman = new Bitmap("C:\\Users\\Justin Do\\Documents\\GitHub\\Snake-Game\\WindowsFormsApplication1\\Resources\\baby.png");
-                Bitmap brick = new Bitmap("C:\\Users\\Justin Do\\Documents\\GitHub\\Snake-Game\\WindowsFormsApplication1\\Resources\\brick.jpg");
+                Bitmap shroom = new Bitmap("Resources\\test.png");
+                Bitmap pacman = new Bitmap("Resources\\baby.png");
+                Bitmap brick = new Bitmap("Resources\\brick.jpg");
                 TextureBrush tbShroom = new TextureBrush(shroom);
                 TextureBrush tbPacman = new TextureBrush(pacman);
                 TextureBrush tbBrick = new TextureBrush(brick);
                 canvas.DrawString("Score " + score.ToString(), font, Brushes.White, new Point(4, 4));
-                //canvas.FillRectangle(new SolidBrush(Color.Orange), new Rectangle(food.X * 16, food.Y * 16, 16, 16));
-                
+                              
                 //FOOD
                 canvas.FillRectangle(tbShroom, new Rectangle(food.X * 16, food.Y * 16, 16, 16));
+
+                //SNAKE
                 for (int i = 0; i < snake.Count; i++)
                 {
                     Color snake_color = i == 0 ? Color.White : Color.Green;
@@ -219,6 +220,8 @@ namespace WindowsFormsApplication1
                     if (i != 0)
                     canvas.FillRectangle(new SolidBrush(snake_color), new Rectangle(currentpart.X * 16, currentpart.Y * 16, 16, 16));
                 }
+
+                //OBSTACLES
                 foreach (var single in obstacles)
                 {
                     canvas.FillRectangle(tbBrick, new Rectangle(single.X * 16, single.Y * 16, 16, 16));
