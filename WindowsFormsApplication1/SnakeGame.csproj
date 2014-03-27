@@ -93,7 +93,6 @@
     <None Include="Resources\mzm.sjuagjns.128x128-75.png" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Resources\pacman.png" />
     <Content Include="Resources\test.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

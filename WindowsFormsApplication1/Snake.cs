@@ -200,7 +200,7 @@ namespace WindowsFormsApplication1
             else
             {
                 Bitmap shroom = new Bitmap("C:\\Users\\Justin Do\\Documents\\GitHub\\Snake-Game\\WindowsFormsApplication1\\Resources\\test.png");
-                Bitmap pacman = new Bitmap("C:\\Users\\Justin Do\\Documents\\GitHub\\Snake-Game\\WindowsFormsApplication1\\Resources\\a.jpg");
+                Bitmap pacman = new Bitmap("C:\\Users\\Justin Do\\Documents\\GitHub\\Snake-Game\\WindowsFormsApplication1\\Resources\\baby.png");
                 TextureBrush tbShroom = new TextureBrush(shroom);
                 TextureBrush tbPacman = new TextureBrush(pacman);
                 canvas.DrawString("Score " + score.ToString(), font, Brushes.White, new Point(4, 4));
@@ -213,7 +213,7 @@ namespace WindowsFormsApplication1
                     Color snake_color = i == 0 ? Color.White : Color.Green;
                     SnakePart currentpart = snake[i];
                     if (i == 0)
-                        canvas.FillRectangle(tbShroom, new Rectangle(currentpart.X * 16, currentpart.Y * 16, 16, 16));
+                        canvas.FillRectangle(tbPacman, new Rectangle(currentpart.X * 16, currentpart.Y * 16, 16, 16));
                     if (i != 0)
                     canvas.FillRectangle(new SolidBrush(snake_color), new Rectangle(currentpart.X * 16, currentpart.Y * 16, 16, 16));
                 }
