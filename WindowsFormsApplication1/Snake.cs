@@ -130,11 +130,11 @@ namespace WindowsFormsApplication1
                             GameOver();
 
                         // Collision with itself
-                        for (int j = 1; j < snake.Count; j++)
-                        {
-                            if (head.X == snake[j].X && head.Y == snake[j].Y)
-                                GameOver();
-                        }
+                        //for (int j = 1; j < snake.Count; j++)
+                        //{
+                        //    if (head.X == snake[j].X && head.Y == snake[j].Y)
+                        //        GameOver();
+                        //}
 
                         //Collision with obstacle
                         foreach (var collision in obstacles) 
