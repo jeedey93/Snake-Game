@@ -42,7 +42,7 @@
             // 
             // pbCanvas
             // 
-            this.pbCanvas.BackColor = System.Drawing.SystemColors.Highlight;
+            this.pbCanvas.BackColor = System.Drawing.SystemColors.Desktop;
             this.pbCanvas.Location = new System.Drawing.Point(13, 28);
             this.pbCanvas.Margin = new System.Windows.Forms.Padding(4);
             this.pbCanvas.Name = "pbCanvas";

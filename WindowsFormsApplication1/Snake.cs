@@ -12,7 +12,8 @@ namespace WindowsFormsApplication1
 {
     public partial class Snake : Form
     {
-
+        const int tile_width = 16;
+        const int tile_height = 16;
         public int score;
         public bool gameOver = false;
         List<SnakePart> snake = new List<SnakePart>();
@@ -172,16 +173,16 @@ namespace WindowsFormsApplication1
 
         private void GenerateObstacle(int obstacleNumber)
         {
-
-            //var newObstacle = new SnakePart(obstacleNumber, obstacleNumber);
             Random randomObstacle = new Random();
             var newObstacle = new SnakePart(randomObstacle.Next(0, 10), randomObstacle.Next(0, 10));
             obstacles.Add(newObstacle);
         }
         private void GenerateFood()
         {
-            Random randomFood = new Random();
-            food = new SnakePart(randomFood.Next(0, 20), randomFood.Next(0, 15));
+            Random random = new Random();
+            int max_tile_w = pbCanvas.Size.Width / tile_width;
+            int max_tile_h = pbCanvas.Size.Height / tile_height;
+            food = new SnakePart(random.Next(0, max_tile_w),random.Next(0, max_tile_h));
         }
 
         private void Draw(Graphics canvas)
@@ -200,15 +201,15 @@ namespace WindowsFormsApplication1
             {
                 canvas.DrawString("Score " + score.ToString(), font, Brushes.White, new Point(4, 4));
                 canvas.FillRectangle(new SolidBrush(Color.Orange), new Rectangle(food.X * 16, food.Y * 16, 16, 16));
+                for (int i = 0; i < snake.Count; i++)
+                {
+                    Color snake_color = i == 0 ? Color.White : Color.Green;
+                    SnakePart currentpart = snake[i];
+                    canvas.FillRectangle(new SolidBrush(snake_color), new Rectangle(currentpart.X * 16, currentpart.Y * 16, 16, 16));
+                }
                 foreach (var single in obstacles)
                 {
                     canvas.FillRectangle(new SolidBrush(Color.Red), new Rectangle(single.X * 16, single.Y * 16, 16, 16));
-                }
-                for (int i = 0; i < snake.Count; i++)
-                {
-                    Color snake_color = i == 0 ? Color.Green : Color.Black;
-                    SnakePart currentpart = snake[i];
-                    canvas.FillRectangle(new SolidBrush(snake_color), new Rectangle(currentpart.X * 16, currentpart.Y * 16, 16, 16));
                 }
             }
         }
