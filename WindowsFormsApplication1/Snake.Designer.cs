@@ -46,7 +46,7 @@
             this.pbCanvas.Location = new System.Drawing.Point(13, 28);
             this.pbCanvas.Margin = new System.Windows.Forms.Padding(4);
             this.pbCanvas.Name = "pbCanvas";
-            this.pbCanvas.Size = new System.Drawing.Size(391, 297);
+            this.pbCanvas.Size = new System.Drawing.Size(320, 240);
             this.pbCanvas.TabIndex = 0;
             this.pbCanvas.TabStop = false;
             this.pbCanvas.Paint += new System.Windows.Forms.PaintEventHandler(this.pbCanvas_Paint);
@@ -57,7 +57,7 @@
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(417, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(346, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -74,19 +74,19 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // hrToolStripMenuItem
             // 
             this.hrToolStripMenuItem.Name = "hrToolStripMenuItem";
-            this.hrToolStripMenuItem.Size = new System.Drawing.Size(104, 6);
+            this.hrToolStripMenuItem.Size = new System.Drawing.Size(149, 6);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
             // 
@@ -99,7 +99,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(417, 338);
+            this.ClientSize = new System.Drawing.Size(346, 289);
             this.Controls.Add(this.pbCanvas);
             this.Controls.Add(this.menuStrip1);
             this.DoubleBuffered = true;
